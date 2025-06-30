@@ -10,7 +10,6 @@ venv/  # Dit is belangrijk! Negeert je virtuele omgeving
 .env
 .idea/ # Voor PyCharm gebruikers
 *.ipynb # Jupyter notebooks (als je die hebt)
-*.txt
 *.csv
 *.xlsx
 
