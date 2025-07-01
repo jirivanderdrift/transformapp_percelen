@@ -131,22 +131,22 @@ def transformeer_percelen_bestand(input_source, output_target=None, vaste_id_kol
                           var_name='Oorspronkelijke_Kolom', 
                           value_name='Waarde')
     
-    # --- START DIAGNOSTISCHE REGELS ---
-    #st.write("--- Diagnostische Output (df_gemolten na melt) ---")
-    #st.write("Kolommen in df_gemolten vóór splitsing:", df_gemolten.columns.tolist())
+     #--- START DIAGNOSTISCHE REGELS ---
+    st.write("--- Diagnostische Output (df_gemolten na melt) ---")
+    st.write("Kolommen in df_gemolten vóór splitsing:", df_gemolten.columns.tolist())
     
-    #df_gemolten[['Basisnaam', 'PerceelNummer']] = df_gemolten['Oorspronkelijke_Kolom'].str.rsplit('_', n=1, expand=True)
+    df_gemolten[['Basisnaam', 'PerceelNummer']] = df_gemolten['Oorspronkelijke_Kolom'].str.rsplit('_', n=1, expand=True)
     
-    #st.write("Kolommen in df_gemolten ná splitsing:", df_gemolten.columns.tolist())
-    #st.write("Unieke waarden in 'Basisnaam' kolom:", df_gemolten['Basisnaam'].unique().tolist())
+    st.write("Kolommen in df_gemolten ná splitsing:", df_gemolten.columns.tolist())
+    st.write("Unieke waarden in 'Basisnaam' kolom:", df_gemolten['Basisnaam'].unique().tolist())
 
-    #pivot_index_cols = actual_id_vars.copy()
-    #if 'PerceelNummer' in df_gemolten.columns:
-    #    pivot_index_cols.append('PerceelNummer')
+    pivot_index_cols = actual_id_vars.copy()
+    if 'PerceelNummer' in df_gemolten.columns:
+        pivot_index_cols.append('PerceelNummer')
     
-    #st.write("pivot_index_cols (index voor pivot):", pivot_index_cols)
-    #st.write("expected_base_kolomnamen (kolommen voor pivot):", expected_base_kolomnamen)
-    #st.write("--- Einde Diagnostische Output ---")
+    st.write("pivot_index_cols (index voor pivot):", pivot_index_cols)
+    st.write("expected_base_kolomnamen (kolommen voor pivot):", expected_base_kolomnamen)
+    st.write("--- Einde Diagnostische Output ---")
     # --- EINDE DIAGNOSTISCHE REGELS ---
 
     # 6. Pivoteren om de gewenste kolomstructuur te krijgen
