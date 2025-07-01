@@ -15,12 +15,12 @@ st.write("Upload een tab-gescheiden TXT-bestand met perceelgegevens in genummerd
 uploaded_file = st.file_uploader("Kies een TXT-bestand", type="txt")
 
 # Optionele invoer voor vaste ID-kolommen
-#st.sidebar.header("Optionele instellingen")
-#vaste_id_kolommen_input = st.sidebar.text_area(
-#    "Voer vaste ID-kolommen in (scheiden met komma, bijv. ID_Project, Naam_Aanvrager)",
-#    value=""
-#)
-#vaste_id_cols = [col.strip() for col in vaste_id_kolommen_input.split(',') if col.strip()] if vaste_id_kolommen_input else None
+st.sidebar.header("Optionele instellingen")
+vaste_id_kolommen_input = st.sidebar.text_area(
+    "Voer vaste ID-kolommen in (scheiden met komma, bijv. ID_Project, Naam_Aanvrager)",
+    value=""
+)
+vaste_id_cols = [col.strip() for col in vaste_id_kolommen_input.split(',') if col.strip()] if vaste_id_kolommen_input else None
 
 if uploaded_file is not None:
     st.info("Bestand succesvol geüpload! Start transformatie...")
