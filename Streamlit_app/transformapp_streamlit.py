@@ -9,18 +9,18 @@ from percelen_transformatie_logica import transformeer_percelen_bestand
 
 st.set_page_config(layout="wide")
 
-st.title('Bestandstransformator voor Percelen')
-st.write("Upload een tab-gescheiden TXT-bestand met perceelgegevens in genummerde kolommen. De tool transformeert deze naar een lange tabel waarin elk perceel een eigen rij krijgt.")
+st.title('Kolommentransformator voor Percelen')
+st.write("Upload een tab-gescheiden TXT-bestand met perceelgegevens in genummerde kolommen. Deze tool transformeert de gegevens naar een tabel waarin elk perceel een eigen rij krijgt.")
 
 uploaded_file = st.file_uploader("Kies een TXT-bestand", type="txt")
 
 # Optionele invoer voor vaste ID-kolommen
-st.sidebar.header("Optionele instellingen")
-vaste_id_kolommen_input = st.sidebar.text_area(
-    "Voer vaste ID-kolommen in (scheiden met komma, bijv. ID_Project, Naam_Aanvrager)",
-    value=""
-)
-vaste_id_cols = [col.strip() for col in vaste_id_kolommen_input.split(',') if col.strip()] if vaste_id_kolommen_input else None
+#st.sidebar.header("Optionele instellingen")
+#vaste_id_kolommen_input = st.sidebar.text_area(
+#    "Voer vaste ID-kolommen in (scheiden met komma, bijv. ID_Project, Naam_Aanvrager)",
+#    value=""
+#)
+#vaste_id_cols = [col.strip() for col in vaste_id_kolommen_input.split(',') if col.strip()] if vaste_id_kolommen_input else None
 
 if uploaded_file is not None:
     st.info("Bestand succesvol geüpload! Start transformatie...")
@@ -31,7 +31,7 @@ if uploaded_file is not None:
 
         # Bepaal de output bestandsnaam
         base_filename = os.path.splitext(uploaded_file.name)[0]
-        output_filename = f"{base_filename}_percelen.xlsx" # Dit is nu alleen de naam, niet het pad
+        output_filename = f"{base_filename}_percelen.xlsx" # Dit is de naam, niet het pad
 
         # Roep de transformatiefunctie aan
         # We geven True mee voor is_string_input omdat we de inhoud van het bestand als string doorgeven
@@ -43,22 +43,18 @@ if uploaded_file is not None:
             is_string_input=True
         )
 
-        # De volgende blokken moeten correct geïndenteerd zijn,
-        # op hetzelfde niveau als 'output_buffer = transformeer_percelen_bestand(...)'.
-        # Dit was de fout!
         if output_buffer:
             st.success("Transformatie voltooid!")
             
             output_buffer.seek(0) # Zorg ervoor dat de buffer gereset is
 
             st.download_button(
-                label="Download Getransformeerd Excel", 
+                label="Download Getransformeerde Excel", 
                 data=output_buffer,
                 file_name=output_filename,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
             )
             
-            # ALS JE WEL EEN PREVIEW WILT VAN DE EXCEL OUTPUT:
             try:
                 # Reset buffer voor het lezen
                 output_buffer.seek(0) 
@@ -75,3 +71,7 @@ if uploaded_file is not None:
     except Exception as e: # Deze except hoort bij de try bovenin (na `if uploaded_file is not None:`)
         st.error(f"Er is een onverwachte fout opgetreden: {e}. Zorg ervoor dat het bestand correct geformatteerd is.")
         st.exception(e) # Toon de volledige traceback voor debugging
+
+
+        #git push -u origin main
+        #git pull origin main
