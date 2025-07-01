@@ -72,6 +72,7 @@ if uploaded_file is not None:
         st.error(f"Er is een onverwachte fout opgetreden: {e}. Zorg ervoor dat het bestand correct geformatteerd is.")
         st.exception(e) # Toon de volledige traceback voor debugging
 
-
-        #git push -u origin main
         #git pull origin main
+        #git add .
+        #git commit -m "Enkele aanpassingen in de weergave tekst en opschoning code"
+        #git push -u origin main
